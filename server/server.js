@@ -22,14 +22,22 @@ io.on('connection',(socket)=>{
   console.log('new user connected');
 
 //use to define our own events
-socket.emit('newMessage',{
-  from:'Andrew',
-  body:'I am sending this from server side',
-  createdAt:Date().toString()
-});
+// socket.emit('newMessage',{
+//   from:'Andrew',
+//   body:'I am sending this from server side',
+//   createdAt:Date().toString()
+// });
 
 socket.on('createMessage',(message)=>{
   console.log(message);
+
+  io.emit('newMessage',{
+    from:message.from,
+    text:message.text,
+    createdAt:new Date().getTime()
+
+  });
+
 });
 
 
