@@ -28,6 +28,24 @@ io.on('connection',(socket)=>{
 //   createdAt:Date().toString()
 // });
 
+
+//greating the new User
+socket.emit('newMessage',{
+  from:'Admin',
+  text:'Welcome to the chat!',
+  createdAt:new Date().getTime()
+});
+
+
+//notifying other users that the new user has joined the chat room
+socket.broadcast.emit('newMessage',{
+  from:'Admin',
+  text:'New user is joined',
+  createdAt:new Date().getTime()
+
+});
+
+
 socket.on('createMessage',(message)=>{
   console.log(message);
 
@@ -37,6 +55,13 @@ socket.on('createMessage',(message)=>{
     createdAt:new Date().getTime()
 
   });
+
+  // socket.broadcast.emit('newMessage',{
+  //   from:message.from,
+  //   text:message.text,
+  //   createdAt:new Date().getTime()
+  //
+  // });
 
 });
 
