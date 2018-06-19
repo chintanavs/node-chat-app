@@ -41,19 +41,17 @@ socket.broadcast.emit('newMessage',generateMessage('Admin','New user is joined')
 
 
 
-socket.on('createMessage',(message)=>{
+socket.on('createMessage',(message,callback)=>{
   console.log(message);
 
   io.emit('newMessage',generateMessage(message.from,message.text));
-
-
+  callback('Received to the Server');
   // socket.broadcast.emit('newMessage',{
   //   from:message.from,
   //   text:message.text,
   //   createdAt:new Date().getTime()
   //
   // });
-
 });
 
 
