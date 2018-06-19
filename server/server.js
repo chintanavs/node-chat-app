@@ -15,13 +15,27 @@ var io=socketIO(server);
 //use to define the middleware
 app.use(express.static(publicPath));
 
+
+
 //used to set up a new connection
 io.on('connection',(socket)=>{
   console.log('new user connected');
 
+//use to define our own events
+socket.emit('newMessage',{
+  from:'Andrew',
+  body:'I am sending this from server side',
+  createdAt:Date().toString()
+});
+
+socket.on('createMessage',(message)=>{
+  console.log(message);
+});
+
+
 socket.on('disconnect',()=>{
   console.log('User was disconnected');
-})
+});
 
 
 });
