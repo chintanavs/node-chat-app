@@ -44,22 +44,18 @@ socket.broadcast.emit('newMessage',generateMessage('Admin','New user is joined')
 socket.on('createMessage',(message,callback)=>{
   console.log(message);
   io.emit('newMessage',generateMessage(message.from,message.text));
-  callback('Received to the Server');
+  callback();
 });
 
 socket.on('createLocationMessage',(coords)=>{
-  io.emit('newLocationMessage',generateLocationMessage('Admin',coords.latitude,coords.longitude));
+  io.emit('newLocationMessage',generateLocationMessage('User',coords.latitude,coords.longitude));
 });
 
 socket.on('disconnect',()=>{
   console.log('User was disconnected');
 });
 
-
 });
-
-
-
 
 server.listen(port,()=>{
   console.log(`Server is up on port ${port}`);
