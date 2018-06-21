@@ -37,6 +37,9 @@ socket.on('disconnect',function (){
   console.log('Disconnected to the server');
 });
 
+
+
+
 socket.on('updateUserList',function(users){
   var ol=jQuery('<ol></ol>');
   users.forEach(function (user){
@@ -44,6 +47,9 @@ socket.on('updateUserList',function(users){
   });
   jQuery('#users').html(ol);
 });
+
+
+
 
 socket.on('newMessage',function (message){
 
@@ -90,7 +96,7 @@ jQuery('#message-form').on('submit',function (e){
 
   socket.emit('createMessage',{
     text:messageTextbox.val(),
-    from:'User'
+    //from:'User'
   },function (){
     messageTextbox.val('');
   });
