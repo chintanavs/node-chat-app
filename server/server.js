@@ -49,7 +49,7 @@ socket.on('join',(params,callback)=>{
   socket.emit('newMessage',generateMessage('Admin','Welcome to the chat!'));
 
   //notifying other users that the new user has joined the chat room
-  socket.broadcast.to(params.room).emit('newMessage',generateMessage('Admin',params.name +'has joined'));
+  socket.broadcast.to(params.room).emit('newMessage',generateMessage('Admin',params.name +' has joined'));
   callback();
 });
 
